@@ -1,3 +1,5 @@
+# this code takes a string and outputs a substring from 18 to -3
+
 s = ''
 
 while len(s) < 21:

@@ -1,3 +1,5 @@
+# this code outputs the words which have 3 or more 'e's in them
+
 s = ''
 
 while len(s.split()) < 2:
