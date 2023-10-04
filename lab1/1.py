@@ -6,7 +6,7 @@ def calc_x(a: float, b: float):
 	elif a < b:
 		return 3 * a/b + 1
 	else:
-		return 5
+		return -5
 
 def main():
 	# check if enough arguments given
