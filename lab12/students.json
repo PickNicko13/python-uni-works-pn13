@@ -1,0 +1,82 @@
+{
+	"stud20": {
+		"surname": "surname0",
+		"name": "name0",
+		"address": "address0",
+		"school_n": "school_n0",
+		"grade": 6,
+		"attendance_day": "sat"
+	},
+	"stud18": {
+		"surname": "surname1",
+		"name": "name1",
+		"address": "address1",
+		"school_n": "school_n1",
+		"grade": 7,
+		"attendance_day": "sun"
+	},
+	"stud16": {
+		"surname": "surname2",
+		"name": "name2",
+		"address": "address2",
+		"school_n": "school_n2",
+		"grade": 8,
+		"attendance_day": "sat"
+	},
+	"stud14": {
+		"surname": "surname3",
+		"name": "name3",
+		"address": "address3",
+		"school_n": "school_n3",
+		"grade": 9,
+		"attendance_day": "sun"
+	},
+	"stud12": {
+		"surname": "surname4",
+		"name": "name4",
+		"address": "address4",
+		"school_n": "school_n4",
+		"grade": 10,
+		"attendance_day": "sat"
+	},
+	"stud10": {
+		"surname": "surname5",
+		"name": "name5",
+		"address": "address5",
+		"school_n": "school_n5",
+		"grade": 6,
+		"attendance_day": "sun"
+	},
+	"stud8": {
+		"surname": "surname6",
+		"name": "name6",
+		"address": "address6",
+		"school_n": "school_n6",
+		"grade": 7,
+		"attendance_day": "sat"
+	},
+	"stud6": {
+		"surname": "surname7",
+		"name": "name7",
+		"address": "address7",
+		"school_n": "school_n7",
+		"grade": 8,
+		"attendance_day": "sun"
+	},
+	"stud2": {
+		"surname": "surname9",
+		"name": "name9",
+		"address": "address9",
+		"school_n": "school_n9",
+		"grade": 10,
+		"attendance_day": "sun"
+	},
+	"1": {
+		"surname": "Зфмдшутлщ",
+		"name": "Maxim",
+		"address": "Chliv",
+		"school_n": "14",
+		"grade": 11,
+		"attendance_day": "sun"
+	}
+}
