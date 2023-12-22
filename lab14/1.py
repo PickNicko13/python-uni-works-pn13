@@ -1,11 +1,11 @@
 #!/bin/python3
 
-import matplotlib.pyplot as plt  
+import matplotlib.pyplot as plt
 import numpy as np
 
 def main():
 	# init a linear space for plot
-	space = np.linspace(0, 4, 1001) 
+	space = np.linspace(0, 4, 1001)
 	# init the function in the linear space
 	f = 5*np.sin(10*space)*np.sin(3*space)
 
