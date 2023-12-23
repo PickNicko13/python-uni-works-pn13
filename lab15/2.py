@@ -2,6 +2,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from calendar import month_name
 
 def main():
 	try:
@@ -29,9 +30,13 @@ def main():
 	# containing sums of all locations' mean daily cyclists each month
 	monthly['Total'] = monthly.sum(axis=1)
 
+	# convert index to month name string
+	monthly.index = monthly.index.map(lambda x: month_name[x])
+
+
 	print(f"\nMean cyclists per day each month:\n{monthly}")
-	mpm = monthly['Total'].idxmax() # Most Popular Month
-	print(f"Most popular month: {mpm} with {monthly.iloc[mpm]['Total']:.0f} cyclists per day on average.")
+	mpm = monthly.idxmax()['Total'] # Most Popular Month
+	print(f"Most popular month: {mpm} with {monthly.loc[mpm]['Total']:.0f} cyclists per day on average.")
 
 	df.plot(title='Daily cyclists at each location in 2011')
 	plt.show()
@@ -39,3 +44,7 @@ def main():
 
 if __name__ == "__main__":
 	main()
+
+
+# possible future improvement could be to account for the day of week, since some month will have more
+# of the less mopular DAYS OF THE WEEK
