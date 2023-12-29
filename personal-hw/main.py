@@ -77,7 +77,7 @@ def lagrange_coefficients(x: Sequence[float], y: Sequence[float]) -> np.poly1d:
 				continue
 			li *= np.poly1d([1, -x[j]]) / (x[i] - x[j])
 
-		# scale and add to the total
+		# Scale and add to the total
 		coefficients += li.coefficients * y[i]
 
 	return np.poly1d(coefficients.round(15))
@@ -96,7 +96,7 @@ def lagrange_coefficients_2(x: Sequence[float], y: Sequence[float]):
 		# i'th Lagrange polynomial
 		li = np.poly1d([x[j] for j in range(n) if j!=i], True)
 
-		# scale and add to the total
+		# Scale and add to the total
 		coefficients += li.coefficients * y[i]/li(x[i])
 
 	return np.poly1d(coefficients.round(15))
@@ -116,7 +116,7 @@ def newtons_polynomial(x: Sequence[float], y: Sequence[float]):
 	ys = [[*y]]
 
 	for i in range(1,n):
-		# append new subarray
+		# Append new subarray
 		ys.append([])
 
 		for j in range(n-i):
@@ -138,11 +138,11 @@ def main():
 		print(f"Usage: {argv[0]} <csv_file_path> <x>")
 		exit(1)
 
-	# get arguments
+	# Get arguments
 	file_path = argv[1]
 	user_x = float(argv[2])
 
-	# get value lists
+	# Get value lists
 	x, y = read_csv(file_path)
 
 	y_min = min(y)
@@ -156,7 +156,7 @@ def main():
 	times = {}
 	t0 = perf_counter()
 
-	# create interpolation polynomial using Lagrange formula, round to 15 decimal places
+	# Create interpolation polynomial using Lagrange formula, round to 15 decimal places
 	# to avoid tiny coefficients introduced by rounding errors
 	f_l0 = np.poly1d(interpolate.lagrange(x, y).coefficients.round(15))
 
@@ -167,45 +167,45 @@ def main():
 	times['scipy lagrange'] = t1-t0
 	t0 = t1
 
-	f_n = newtons_polynomial(x,y)
-	print(f"Manual Newton's:\n{f_n}")
-
-	t1 = perf_counter()
-	times['manual newton'] = t1-t0
-	t0 = t1
-
-	f_l1 = lagrange_coefficients(x,y)
-	print(f"Manual Lagrange's 1:\n{f_l1}")
-
-	t1 = perf_counter()
-	times['manual lagrange 1'] = t1-t0
-	t0 = t1
-
-	f_l2 = lagrange_coefficients_2(x,y)
-	print(f"Manual Lagrange's 2:\n{f_l2}")
-
-	t1 = perf_counter()
-	times['manual lagrange 2'] = t1-t0
-	t0 = t1
-
+	# f_n = newtons_polynomial(x,y)
+	# print(f"Manual Newton's:\n{f_n}")
+	#
+	# t1 = perf_counter()
+	# times['manual newton'] = t1-t0
+	# t0 = t1
+	#
+	# f_l1 = lagrange_coefficients(x,y)
+	# print(f"Manual Lagrange's 1:\n{f_l1}")
+	#
+	# t1 = perf_counter()
+	# times['manual lagrange 1'] = t1-t0
+	# t0 = t1
+	#
+	# f_l2 = lagrange_coefficients_2(x,y)
+	# print(f"Manual Lagrange's 2:\n{f_l2}")
+	#
+	# t1 = perf_counter()
+	# times['manual lagrange 2'] = t1-t0
+	# t0 = t1
+	#
 	cubic_spline = interpolate.CubicSpline(x,y)
-	print(f"Cubic Spline:\n{cubic_spline.c}")
+	# print(f"\nCubic Spline:\n{cubic_spline.c}")
 
 	t1 = perf_counter()
 	times['cubic spline'] = t1-t0
 
-	print(f"\nExecution times:\n{times}\n\n")
-	print(f"SciPy Lagrange time: {times['scipy lagrange']}")
+	# print(f"\nExecution times:\n{times}\n\n")
+	print(f"\nSciPy Lagrange time: {times['scipy lagrange']}")
 	for t in times.keys():
 		if t != "scipy lagrange":
-			print(f"{t}: {times[t]/times['scipy lagrange']}")
+			print(f"{t}: {times[t]/times['scipy lagrange']*100:.2f}%")
 
-	# print the interpolated value at x given by the user
+	# Print the interpolated value at x given by the user
 	print(f"\nInterpolated value at x={user_x}:",
-		f"SciPy Lagrange) {f_l0(user_x)}",
-		f"Manual Lagrange 1) {f_l1(user_x)}",
-		f"Manual Lagrange 2) {f_l2(user_x)}",
-		f"Manual Newton) {f_n(user_x)}",
+		f"SciPy Lagrange) {f_l0(user_x)}\n",
+		# f"Manual Lagrange 1) {f_l1(user_x)}",
+		# f"Manual Lagrange 2) {f_l2(user_x)}",
+		# f"Manual Newton) {f_n(user_x)}",
 		sep='\n'
 	)
 
@@ -226,7 +226,7 @@ def main():
 	ax.set_xlabel('x', color=Gruvbox.FG1.value)
 	ax.set_ylabel('y', color=Gruvbox.FG1.value, rotation=0)
 
-	# plot interpolation functions available in SciPy (except for Lagrange)
+	# Plot interpolation functions available in SciPy (except for Lagrange)
 	# ax.plot(
 	# 		space, interpolate.krogh_interpolate(x,y,space)+y_diff/4,
 	# 		linestyle='--', label=f'Krogh + {y_diff/4}', color=Gruvbox.FG_AQUA.value, linewidth=1)
@@ -240,10 +240,12 @@ def main():
 			space, cubic_spline(space),
 			linestyle='-', label=f'Piecewise Cubic Spline', color=Gruvbox.FG_PURPLE.value, linewidth=4)
 	# Plot all the polinomes constituting the cubic spline
-	# for i in range(len(cubic_spline.c[0])):
-	# 	segment_y = np.polyval(cubic_spline.c[:, i], space - cubic_spline.x[i])
-	# 	ax.plot(space, segment_y, linestyle='-.', linewidth=1.6, label=f'Polynomial {i + 1}')
-	# 	print(f"{cubic_spline.c[:, i]}")
+	print("\nCubic spline polynomials and their ranges:")
+	for i in range(len(cubic_spline.c[0])):
+		_poly = np.poly1d(cubic_spline.c[:, i])
+		segment_y = np.polyval(_poly, space - cubic_spline.x[i])
+		ax.plot(space, segment_y, linestyle='-.', linewidth=1.6, label=f'Polynomial {i + 1}\n{_poly}')
+		print(f"{_poly} at x [{cubic_spline.x[i]};{cubic_spline.x[i+1]}]")
 
 	# If applicable, plot smoothing spline
 	# if len(x) > 5:
@@ -254,13 +256,13 @@ def main():
 	ax.plot(
 			space, f_l0(space),
 			linestyle='-', label='Lagrange polynomial', color=Gruvbox.FG_GRAY.value, linewidth=2)
-	# plot the source datapoints
+	# Plot the source datapoints
 	ax.scatter(
 			x,y,
 			marker='.', label='Datapoints', color=Gruvbox.FG0.value, zorder=999)
-	# plot the user_x
+	# Plot the user_x
 	ax.scatter(
-			[user_x],[f_l1(user_x)],
+			[user_x],[f_l0(user_x)],
 			marker='o', label='x*', color=Gruvbox.FG0.value, zorder=9999)
 	fig.set_layout_engine('tight')
 	ax.legend(facecolor=Gruvbox.BG0_S.value, labelcolor=Gruvbox.FG3.value, edgecolor=Gruvbox.BG2.value)
