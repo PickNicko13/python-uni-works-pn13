@@ -1,0 +1,5 @@
+Task 1.
+Import the NLTK library and texts from the Project Gutenberg electronic text archive, and use the text given by the option to complete the tasks.
+Determine the number of words in the text.
+Identify the 10 most frequently used words in the text and create a bar chart based on this data.
+Remove stop words and punctuation from the text, and then find the 10 most frequently used words in the text again and draw a bar chart based on this data.

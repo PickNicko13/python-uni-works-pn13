@@ -1,0 +1,1 @@
+task import nltk librari text project gutenberg electron text archiv use text given option complet task determin number word text identifi frequent use word text creat bar chart base thi data remov stop word punctuat text find frequent use word text draw bar chart base thi data
